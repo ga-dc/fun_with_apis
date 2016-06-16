@@ -26,15 +26,20 @@ $apicall .= "&keywords=$safequery";
 $apicall .= "&paginationInput.entriesPerPage=5";
 
 
-$response = file_get_contents($apicall);
-$data = json_decode($response);
+$respons = file_get_contents($apicall);
+$resp = json_decode($response);
 #var_dump($data->findItemsByKeywordsResponse[0]->searchResult);
-foreach ($data->findItemsByKeywordsResponse as $keyword){
-  foreach ($keyword->searchResult as $result){
-    foreach ($result->item as $item){
-        var_dump($item->title);
-      }
-    }
+foreach($resp->searchResult->item as $item) {
+   $pic   = $item->galleryURL;
+   $link  = $item->viewItemURL;
+   $title = $item->title;
+
+   // For each SearchResultItem node, build a link and append it to $results
+   $results .= "<tr><td><img src=\"$pic\"></td><td><a href=\"$link\">$title</a></td></tr>";
+ }
+}
+
+
 #echo '<pre>';
   //$title = $asset -> item;
   //$itemUrl = $asset -> viewItemURL;
