@@ -5,6 +5,8 @@ $( document ).ready( function() {
     // Obtein user inputted search term and location.
     var searchTerm   = $( 'input[name="searchTerm"]' ).val();
 
+    console.log(searchTerm);
+
     // Build an API query URL.
     var baseUrl = [
       'https://api.nytimes.com/svc/search/v2/articlesearch.json',
@@ -14,22 +16,24 @@ $( document ).ready( function() {
     // Build a query url based on user's input.
     var queryUrl = baseUrl + '&q=' + searchTerm;
 
-    //
+    searchTerm = "";
+
     $.ajax({
       url: queryUrl,
       method: 'GET',
-    }).done(function(response) {
-      console.log(response);
+    }).done(function(data) {
+      console.log(data);
 
-      var articles = response.docs;
+      var articles = data.response.docs;
+      var article  = articles[0];
 
+      $( '.lead_paragraph' ).text( article.lead_paragraph );
+      $( '.abstract' ).text( article.abstract );
+      $( '.pub_date' ).text( article.pub_date );
+      $( '.web_url' ).text( article.web_url );
 
-      // $(  '.movie .movie-title'  ).text(  response[ "Title" ]  );
-      // $(  '.movie .movie-plot'  ).text(  response[ "Plot" ]  );
-      // $(  '.movie .movie-genre'  ).text(  response[ "Genre" ]  );
-      // $(  '.movie .movie-year'  ).text(  response[ "Year" ]  );
-      // $(  'img'  ).attr( 'src', response[ "Poster" ]  );
     }).fail(function(err) {
+      console.log(err);
       throw err;
     });
   });
