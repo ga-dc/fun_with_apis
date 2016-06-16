@@ -1,0 +1,40 @@
+#buttons div {
+  display: inline-block;
+  width: 400px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  font-family: helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.images img {
+  display: inline-flex;
+  outline-width: thick;
+  outline-color: red;
+  margin-right: 500px;
+  border-radius: 5px;
+}
+
+
+h1 {
+  font-family: helvetica, sans-serif;
+  font-weight: bold;
+  text-shadow: 2px;
+}
+
+form {
+  margin-bottom: 50px;
+}
+
+input {
+  height: 50px;
+  font-size: 26px;
+  width: 400px;
+}
