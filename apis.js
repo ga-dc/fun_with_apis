@@ -1,19 +1,16 @@
 $(document).ready(function(){
 
-var keyword = "cities"
-var searchNumber = 3
-var url = "http://api.giphy.com/v1/gifs/search?q="+keyword+"&api_key=dc6zaTOxFJmzC&limit="+searchNumber
-
 $("#get").on("click", function(){
-  keyword = $("input#city").val()
-  searchNumber = 2
+  var keyword = $("input#city").val()
+  var searchNumber = 2
+  console.log(searchNumber)
   searchNumber = Number(searchNumber)
+  var url = "http://api.giphy.com/v1/gifs/search?q="+keyword+"&api_key=dc6zaTOxFJmzC&limit="+searchNumber
   console.log("number: "+searchNumber +" keyword: "+keyword)
   console.log(url)
-  ajaxRun()
-})
 
-function ajaxRun(){
+
+
 $.ajax({
       url: url,
       type: "GET",
@@ -36,5 +33,5 @@ $.ajax({
     .fail(function (){
       console.log("failed")
     })
-}
+  })
 })
