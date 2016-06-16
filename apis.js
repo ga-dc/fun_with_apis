@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 $("#get").on("click", function(){
   var keyword = $("input#city").val()
-  var searchNumber = 2
+  var searchNumber = $("input#return").val()
   console.log(searchNumber)
   searchNumber = Number(searchNumber)
   var url = "http://api.giphy.com/v1/gifs/search?q="+keyword+"&api_key=dc6zaTOxFJmzC&limit="+searchNumber
@@ -21,6 +21,7 @@ $.ajax({
 
     .done(function(response){
       console.log(response)
+      $(".images").html("")
       for (i=0; i<searchNumber; i++){
         src = response.data[i].images.original.url
         var imgID = "<img src='"+src+"'>"
