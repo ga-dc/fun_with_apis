@@ -14,12 +14,17 @@ Your prompt is an open-ended one: make something cool using a 3rd party API! The
 
 * [Giphy](https://api.giphy.com/)
 * [OMDB (Open Movie Database)](http://www.omdbapi.com/)
-* [Spotify](https://developer.spotify.com/web-api/)
 * [Soundcloud](https://developers.soundcloud.com)
-* [Yelp](https://www.yelp.com/developers/documentation/v2/overview)
 * [Weather Underground](http://www.wunderground.com/weather/api)
 
+These are much more ambitious because they require authentication:
+
+* [Spotify](https://developer.spotify.com/web-api/)
+* [Yelp](https://www.yelp.com/developers/documentation/v2/overview)
+
 There's an API for pretty much everything. You can search for more at [Mashape](https://www.mashape.com/explore).
+
+**If you find yourself spending more than 30 minutes just getting the API to talk back to you, you're spending too much time.** Use one of the prompts from this next section:
 
 ## Need an app idea?
 
