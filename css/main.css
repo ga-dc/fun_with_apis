@@ -1,0 +1,27 @@
+.articles {
+  min-height: 50vh;
+}
+
+#search-form {
+  display: flex;
+}
+
+#search-form input {
+  flex-grow: 3;
+}
+
+#search-form button {
+  flex-grow: 1;
+}
+
+#search-form input,
+#search-form button {
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+}
+
+footer {
+  padding: 40px 0;
+  border-top: 1px solid #ddd;
+}

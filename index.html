@@ -12,10 +12,14 @@
     News Article Search
   </title>
 </head>
-<body>
 
+<body>
   <div class="container">
-    <h1 class="page-header">News Article Search</h1>
+    <h1 class="page-header">
+      News Article Search
+      <br />
+      <small>powered by <a href="http://www.nytimes.com/">New York Times</a></small>
+    </h1>
 
     <div class="well">
       <form id="search-form">
@@ -28,24 +32,51 @@
       </form>
     </div>
 
-    <div class="search-result panel panel-default">
-      <ul>
-        <div class="panel-header">
-          <h4 class="lead_paragraph"></h4>
-        </div>
-        <div class="panel-body">
-          <p class="abstract"></p>
-          <p class="pub_date"></p>
-          <p class="web_url"></p>
-        </div>
-      </ul>
-    </div>
+    <section class="articles">
+      <!-- The compiled content will be inserted here -->
+    </section>
+
+    <footer class="footer">
+      &copy; Masatoshi Nishiguchi 2016
+    </footer>
+
   </div>
 
-  <!-- Load jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<!-- Load jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
-  <!-- Load my scripts -->
-  <script src="js/main.js"></script>
+<!-- Load Handlebars -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+<!-- Load my scripts -->
+<script src="js/main.js"></script>
+
+<!-- Define the template -->
+<script id="articles-template" type="text/x-handlebars-template">
+
+  {{#each articles}}
+    <div class="search-result panel panel-default">
+      <div class="panel-heading">
+        <h4>
+          <a href="{{web_url}}">
+            {{headline.main}}
+          </a>
+          <!-- <span class="pull-right">
+            ID: {{@index}}
+          </span> -->
+        </h4>
+      </div>
+      <div class="panel-body">
+        <p>
+          {{lead_paragraph}}
+        </p>
+      </div>
+      <ul class="list-group">
+         <li class="list-group-item">Published on: {{pub_date}}</li>
+       </ul>
+    </div>
+  {{/each}}
+</script>
+
 </body>
 </html>
