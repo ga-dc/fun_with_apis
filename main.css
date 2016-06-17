@@ -1,0 +1,19 @@
+h2{
+  text-align: center;
+}
+.main{
+    display: inline-block;
+    width: 20%;
+    border: 2px blue solid;
+    padding:0;
+
+}
+#item{
+  margin: auto;
+}
+ul {
+  list-style-type: none;
+  text-align: center;
+}
+body{
+}

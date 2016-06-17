@@ -3,50 +3,61 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="main.css">
   </head>
-
-<?php
-error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
-// API request variables
-$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
-$version = '1.0.0';  // API version supported by your application
-$appid = '';  // Replace with your own AppID
-$globalid = 'EBAY-US';  // Global ID of the eBay site you want to search (e.g., EBAY-DE)
-$query = 'Mario';  // You may want to supply your own query
-$safequery = urlencode($query);  // Make the query URL-friendly
-// Construct the findItemsByKeywords HTTP GET call
-$apicall = "$endpoint?";
-$apicall .= "OPERATION-NAME=findItemsByKeywords";
-$apicall .= "&SERVICE-VERSION=$version";
-$apicall .= "&SECURITY-APPNAME=$appid";
-$apicall .= "&GLOBAL-ID=$globalid";
-$apicall .= "&RESPONSE-DATA-FORMAT=JSON";
-$apicall .= "&keywords=$safequery";
-$apicall .= "&paginationInput.entriesPerPage=5";
-$respons = file_get_contents($apicall);
-$resp = json_decode($response);
-#var_dump($data->findItemsByKeywordsResponse[0]->searchResult);
-foreach($resp->searchResult->item as $item) {
-   $pic   = $item->galleryURL;
-   $link  = $item->viewItemURL;
-   $title = $item->title;
-   // For each SearchResultItem node, build a link and append it to $results
-   $results .= "<tr><td><img src=\"$pic\"></td><td><a href=\"$link\">$title</a></td></tr>";
- }
-}
-#echo '<pre>';
-  //$title = $asset -> item;
-  //$itemUrl = $asset -> viewItemURL;
-    // echo "<div class ='item'>
-    //       <p><a href='$itemURL'>$title</a></p>
-    // ";
-  #  print_r($response);
-    #print_r($asset -> item[1] -> sellingStatus[0] -> currentPrice[0] -> __value__);
- }
-// echo "<pre>";
-//  print_r( );
-?>
 <body>
+  <h2>Find Items by Store Name</h2>
+  <!-- <input name="find" placeholder="Search by Ebay Store" action="index.php" method="POST">
+  <button type="sumbit" name="button"></button> -->
+  <div id="item">
+    <?php
 
+
+        $findAPI = 'http://svcs.ebay.com/services/search/FindingService/v1';
+        $appid = 'Key';
+        $responseEncoding = 'XML';
+        $f_version = '1.4.0';
+        $call = "findItemsIneBayStores";
+        $global = 'EBAY-US';
+        $returneditems = '20';
+        $storeName = "rapidsd1985";
+
+        $calls = "$findAPI?OPERATION-NAME=$call"
+            ."&version=$f_version"
+            . "&GLOBAL-ID=$global"
+            . "&SECURITY-APPNAME=$appid"
+            . "&RESPONSE-DATA-FORMAT=$responseEncoding"
+            . "&paginationInput.entriesPerPage=$returneditems"
+            . "&storeName=$storeName";
+        $request = simplexml_load_file($calls);
+
+
+    foreach($request->searchResult->item as $details){
+    $itemId = $details -> itemId;
+    $title = $details -> title;
+    $galleryURL= $details -> galleryURL;
+    $viewItemURL = $details -> viewItemURL;
+    $zipCode= $details-> postalCode;
+    $location = $details-> location;
+    $condition = $details-> condition->conditionDisplayName;
+    $price = $details-> sellingStatus->currentPrice;
+    $timeLeft = $details-> sellingStatus-> timeLeft;
+    $endTime = $details-> listingInfo->endTime;
+    echo "<div class='main'>
+            <ul class='content'>
+                 <li class='imgs'><a href ='$viewItemURL'><img src = '$galleryURL' class='img' alt='$title' ></a></li>
+                <li class='title'>Title: $title</li>
+                <li class='price'>Price: &#36  $price</li>
+            </ul>
+        </div> ";
+
+
+
+/**echo '<pre>';
+print_r($request);
+*/
+}
+?>
+</div>
 </body>
 </html>
